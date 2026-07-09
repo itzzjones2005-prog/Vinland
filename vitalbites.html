@@ -1,0 +1,2173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VitalBites — Empowering Food. Delivering Opportunities.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green: #22c55e;
+        --green-deep: #14532d;
+        --green-tint: #ecfdf3;
+        --orange: #f97316;
+        --orange-tint: #fff1e6;
+        --ink: #1f2937;
+        --ink-soft: #6b7280;
+        --bg: #ffffff;
+        --bg-soft: #f9fafb;
+        --line: #e5e7eb;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+      }
+      p {
+        margin: 0;
+      }
+      .display {
+        font-family: "Fraunces", serif;
+      }
+      .mono {
+        font-family: "DM Mono", monospace;
+      }
+      button,
+      input,
+      textarea {
+        font-family: inherit;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .focus:focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 2px;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 22px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14.5px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px -12px rgba(31, 41, 55, 0.25);
+      }
+      .btn-green {
+        background: var(--green);
+        color: #fff;
+      }
+      .btn-orange {
+        background: var(--orange);
+        color: #fff;
+      }
+      .btn-dark {
+        background: var(--ink);
+        color: #fff;
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--ink);
+        border: 1.5px solid var(--ink);
+      }
+      .btn-outline-white {
+        background: transparent;
+        color: #fff;
+        border: 1.5px solid #fff;
+      }
+      .btn-full {
+        width: 100%;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .btn:hover {
+          transform: none;
+        }
+      }
+
+      /* Pills */
+      .pill {
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.3px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--green-tint);
+        color: var(--green-deep);
+        display: inline-block;
+      }
+      .pill-orange {
+        background: var(--orange-tint);
+        color: #9a3412;
+      }
+
+      /* Ticket / receipt motif */
+      .ticket {
+        position: relative;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+        overflow: hidden;
+      }
+      .perf {
+        border-top: 1.5px dashed var(--line);
+        position: relative;
+      }
+      .perf::before,
+      .perf::after {
+        content: "";
+        position: absolute;
+        top: -7px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 1px solid var(--line);
+      }
+      .perf::before {
+        left: -8px;
+      }
+      .perf::after {
+        right: -8px;
+      }
+
+      .tap {
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease;
+      }
+      .tap:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px -12px rgba(31, 41, 55, 0.25);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .tap:hover {
+          transform: none;
+        }
+      }
+
+      .scrollx {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .scrollx::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Nav */
+      .navbar {
+        border-bottom: 1px solid var(--line);
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(6px);
+        z-index: 40;
+      }
+      .nav-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: var(--green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+      .brand-name {
+        font-size: 21px;
+        font-weight: 700;
+      }
+      .nav-links {
+        display: none;
+        gap: 26px;
+      }
+      .nav-link {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14.5px;
+        font-weight: 600;
+        color: var(--ink-soft);
+        padding-bottom: 4px;
+        border-bottom: 2px solid transparent;
+      }
+      .nav-link.active {
+        color: var(--green-deep);
+        border-bottom: 2px solid var(--green);
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .cart-btn {
+        position: relative;
+        background: var(--bg-soft);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 9px 11px;
+        cursor: pointer;
+        font-size: 17px;
+      }
+      .cart-badge {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: var(--orange);
+        color: #fff;
+        font-size: 10px;
+        font-family: "DM Mono", monospace;
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .nav-login-desktop {
+        display: none;
+      }
+      .mobile-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+      }
+      .mobile-menu {
+        display: none;
+        border-top: 1px solid var(--line);
+        padding: 12px 20px;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu button {
+        text-align: left;
+        background: none;
+        border: none;
+        padding: 8px 0;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 14.5px;
+      }
+      @media (min-width: 860px) {
+        .nav-links {
+          display: flex;
+        }
+        .nav-login-desktop {
+          display: inline-flex;
+        }
+        .mobile-toggle {
+          display: none;
+        }
+        .mobile-menu {
+          display: none !important;
+        }
+      }
+
+      /* Hero */
+      .hero {
+        background: var(--green-deep);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.12;
+        background-image: repeating-linear-gradient(
+          135deg,
+          #fff 0 2px,
+          transparent 2px 26px
+        );
+      }
+      .hero-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 72px 20px 90px;
+        position: relative;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+      }
+      .hero-title {
+        font-size: clamp(34px, 5vw, 54px);
+        line-height: 1.08;
+        font-weight: 600;
+        margin: 18px 0 16px;
+      }
+      .hero-sub {
+        font-size: 17px;
+        color: #d1fae5;
+        max-width: 480px;
+        line-height: 1.6;
+      }
+      .hero-search {
+        margin-top: 26px;
+        background: #fff;
+        border-radius: 14px;
+        padding: 6px;
+        display: flex;
+        gap: 6px;
+        max-width: 460px;
+      }
+      .hero-search-input {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+      }
+      .hero-search-input input {
+        border: none;
+        outline: none;
+        font-size: 14.5px;
+        width: 100%;
+        color: var(--ink);
+      }
+      .hero-ctas {
+        margin-top: 22px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .hero-ticket {
+        background: #fff;
+        color: var(--ink);
+        padding: 18px;
+        transform: rotate(1.5deg);
+      }
+      @media (max-width: 900px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Sections */
+      .section {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 72px 20px;
+      }
+      .section-head {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .section-title {
+        font-size: 32px;
+        font-weight: 600;
+        margin-top: 12px;
+      }
+
+      /* Steps */
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+      .step {
+        position: relative;
+        padding: 0 18px;
+      }
+      .step-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        font-size: 22px;
+      }
+      .step-num {
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-soft);
+        margin-bottom: 4px;
+      }
+      .step-title {
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .step-desc {
+        font-size: 14px;
+        color: var(--ink-soft);
+        line-height: 1.55;
+      }
+      @media (max-width: 800px) {
+        .steps-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+      }
+
+      /* Category strip */
+      .cat-strip {
+        background: var(--bg-soft);
+        padding: 28px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .cat-strip-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+      }
+      .cat-chip {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 10px 16px;
+        cursor: pointer;
+        font-size: 13.5px;
+        font-weight: 600;
+      }
+
+      /* Grids */
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      @media (max-width: 900px) {
+        .grid-3 {
+          grid-template-columns: 1fr 1fr;
+        }
+        .grid-4 {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 600px) {
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Restaurant card */
+      .r-card {
+        text-align: left;
+        cursor: pointer;
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+        color: inherit;
+        display: block;
+      }
+      .r-card-image {
+        height: 128px;
+        display: flex;
+        align-items: flex-end;
+        padding: 14px;
+        position: relative;
+      }
+      .r-card-img-wrap {
+        overflow: hidden;
+        border-radius: 16px 16px 0 0;
+        height: 140px;
+      }
+      .r-card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .r-card-type {
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        background: rgba(0, 0, 0, 0.28);
+        padding: 3px 9px;
+        border-radius: 999px;
+      }
+      .r-card-tag {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+      }
+      .r-card-body {
+        padding: 16px;
+      }
+      .r-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .r-card-name {
+        font-size: 16.5px;
+        font-weight: 700;
+      }
+      .r-card-rating {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 13.5px;
+      }
+      .r-card-meta {
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        margin-top: 4px;
+      }
+      .r-card-foot {
+        margin-top: 12px;
+        padding-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12.5px;
+        color: var(--ink-soft);
+      }
+
+      /* Why choose */
+      .why-card {
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+      }
+      .why-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--green-tint);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+        font-size: 19px;
+      }
+      .why-title {
+        font-size: 15.5px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .why-desc {
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        line-height: 1.55;
+      }
+
+      /* Stats */
+      .stats {
+        background: var(--green-deep);
+        color: #fff;
+        padding: 60px 20px;
+      }
+      .stats-grid {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        text-align: center;
+      }
+      .stat-num {
+        font-size: 36px;
+        font-weight: 600;
+      }
+      .stat-label {
+        font-size: 13.5px;
+        color: #a7f3d0;
+        margin-top: 6px;
+      }
+
+      /* Partner banner */
+      .partner-banner {
+        background: var(--orange-tint);
+        border-radius: 24px;
+        padding: 48px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--ink);
+        color: #d1d5db;
+        padding: 56px 20px 28px;
+      }
+      .footer-grid {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 32px;
+      }
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .footer-social {
+        display: flex;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .footer-social span {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        background: #374151;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+      }
+      .footer h4 {
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        letter-spacing: 0.4px;
+      }
+      .footer-item {
+        font-size: 13.5px;
+        margin-bottom: 10px;
+      }
+      .footer-contact {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .footer-bottom {
+        max-width: 1180px;
+        margin: 36px auto 0;
+        border-top: 1px solid #374151;
+        padding-top: 20px;
+        font-size: 12.5px;
+        color: #9ca3af;
+      }
+      @media (max-width: 800px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+          row-gap: 28px;
+        }
+      }
+
+      /* Browse page */
+      .page-pad {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 36px 20px 80px;
+      }
+      .back-link {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--ink-soft);
+        font-size: 13.5px;
+        margin-bottom: 18px;
+      }
+      .page-title {
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--ink-soft);
+        font-size: 14.5px;
+        margin-bottom: 26px;
+      }
+      .browse-layout {
+        display: flex;
+        gap: 24px;
+      }
+      .filters {
+        width: 240px;
+        flex-shrink: 0;
+      }
+      .filters .ticket {
+        padding: 18px;
+      }
+      .filter-search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      .filter-search input {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 13.5px;
+        width: 100%;
+      }
+      .filter-label {
+        font-size: 12.5px;
+        font-weight: 700;
+        color: var(--ink-soft);
+        margin-bottom: 10px;
+        letter-spacing: 0.3px;
+      }
+      .sort-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13.5px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+      .cuisine-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .cuisine-chip {
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: #fff;
+        cursor: pointer;
+      }
+      .clear-filters {
+        margin-top: 16px;
+        font-size: 12.5px;
+        color: var(--orange);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .browse-results {
+        flex: 1;
+      }
+      .empty-state {
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 60px;
+        color: var(--ink-soft);
+      }
+      @media (max-width: 780px) {
+        .browse-layout {
+          flex-direction: column;
+        }
+        .filters {
+          width: 100%;
+        }
+        .browse-results .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 600px) {
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Menu page */
+      .menu-hero {
+        height: 170px;
+        border-radius: 20px;
+        margin-bottom: 22px;
+        display: flex;
+        align-items: flex-end;
+        padding: 24px;
+      }
+      .menu-hero-title {
+        color: #fff;
+        font-size: 28px;
+        font-weight: 600;
+        margin-top: 10px;
+      }
+      .menu-meta {
+        display: flex;
+        gap: 18px;
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+      .menu-meta span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .menu-layout {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 30px;
+      }
+      .menu-list-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+      .menu-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .menu-item {
+        padding: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+      .menu-item-content {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .menu-item-thumb {
+        width: 72px;
+        height: 72px;
+        border-radius: 16px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+      .menu-item-name {
+        font-size: 15.5px;
+        font-weight: 700;
+      }
+      .menu-item-desc {
+        font-size: 13px;
+        color: var(--ink-soft);
+        margin-top: 4px;
+        max-width: 340px;
+      }
+      .menu-item-price {
+        font-size: 15px;
+        font-weight: 600;
+        margin-top: 8px;
+        display: block;
+      }
+      .cart-side {
+        padding: 18px;
+        position: sticky;
+        top: 90px;
+      }
+      .cart-side-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .cart-side-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        padding: 5px 0;
+      }
+      @media (max-width: 820px) {
+        .menu-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Cart / checkout */
+      .cart-empty {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 90px 20px;
+        text-align: center;
+      }
+      .cart-page-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 36px 20px 80px;
+      }
+      .cart-block {
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .cart-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .cart-row-name {
+        font-size: 14.5px;
+        font-weight: 700;
+      }
+      .cart-row-rest {
+        font-size: 12.5px;
+        color: var(--ink-soft);
+      }
+      .cart-row-right {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .qty-control {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 10px;
+      }
+      .qty-control button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .cart-row-price {
+        font-weight: 600;
+        width: 56px;
+        text-align: right;
+      }
+      .totals-block {
+        margin-top: 14px;
+        padding-top: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 14px;
+      }
+      .totals-row {
+        display: flex;
+        justify-content: space-between;
+      }
+      .totals-final {
+        font-weight: 700;
+        font-size: 16px;
+        margin-top: 6px;
+      }
+      .form-block h3 {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+      .form-col {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .form-col input,
+      .form-col textarea {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 11px 14px;
+        font-size: 14px;
+        width: 100%;
+      }
+      .payment-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .payment-opt {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 10px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: #fff;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .payment-opt.active {
+        border: 1.5px solid var(--green);
+        background: var(--green-tint);
+      }
+      @media (max-width: 600px) {
+        .payment-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      /* Track page */
+      .track-wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 48px 20px 80px;
+      }
+      .track-head {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .track-map {
+        height: 220px;
+        margin-bottom: 26px;
+        background: linear-gradient(
+          135deg,
+          var(--green-tint),
+          var(--orange-tint)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .track-steps {
+        padding: 22px;
+      }
+      .track-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding-bottom: 22px;
+        position: relative;
+      }
+      .track-step:last-child {
+        padding-bottom: 0;
+      }
+      .track-line {
+        position: absolute;
+        left: 11px;
+        top: 26px;
+        bottom: 0;
+        width: 2px;
+      }
+      .track-dot {
+        width: 24px;
+        height: 24px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        z-index: 1;
+        font-size: 11px;
+      }
+      .track-step-title {
+        font-size: 14.5px;
+      }
+      .track-step-sub {
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        margin-top: 2px;
+      }
+      .track-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      /* Partner page */
+      .partner-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 48px 20px 90px;
+      }
+      .partner-opt {
+        text-align: left;
+        padding: 18px;
+        border-radius: 16px;
+        cursor: pointer;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+      .partner-opt.active {
+        border: 1.5px solid var(--green);
+        background: var(--green-tint);
+      }
+      .partner-opt-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+        background: var(--bg-soft);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        font-size: 18px;
+      }
+      .partner-opt.active .partner-opt-icon {
+        background: var(--green);
+      }
+      .partner-opt-title {
+        font-size: 14.5px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        line-height: 1.3;
+      }
+      .partner-opt-desc {
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        line-height: 1.5;
+      }
+      .partner-form {
+        padding: 26px;
+        margin-top: 30px;
+      }
+      @media (max-width: 800px) {
+        .partner-wrap .grid-4 {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .partner-form .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      /* ---------------------------------- DATA ---------------------------------- */
+      const CATEGORIES = [
+        { name: "Waakye", ic: "🍚" },
+        { name: "Jollof Rice", ic: "🔥" },
+        { name: "Fried Rice", ic: "🍛" },
+        { name: "Banku", ic: "🍽️" },
+        { name: "Fufu", ic: "🍲" },
+        { name: "Kenkey", ic: "🌽" },
+        { name: "Pizza", ic: "🍕" },
+        { name: "Burgers", ic: "🍔" },
+        { name: "Shawarma", ic: "🌯" },
+        { name: "Drinks", ic: "🥤" },
+        { name: "Desserts", ic: "🍪" },
+      ];
+
+      const RESTAURANTS = [
+        {
+          id: 1,
+          name: "Auntie Muni's Kitchen",
+          type: "Home Cook",
+          cuisine: "Waakye & Local",
+          area: "Osu",
+          rating: 4.8,
+          time: "25-35 min",
+          fee: 8,
+          color: "var(--green)",
+          tag: "Community Favourite",
+          image: "Images/waakyesp.jpg",
+          menu: [
+            {
+              id: 101,
+              name: "Waakye Special",
+              desc: "Rice & beans, gari, boiled egg, wele, spaghetti",
+              price: 35,
+              image: "Images/waakye.jpg",
+            },
+            {
+              id: 102,
+              name: "Waakye + Fried Fish",
+              desc: "Classic waakye topped with crispy tilapia",
+              price: 45,
+              image: "Images/waakyesp.jpg",
+            },
+            {
+              id: 103,
+              name: "Sobolo (1L)",
+              desc: "Chilled hibiscus drink, house recipe",
+              price: 15,
+              image: "Images/waakye.jpg",
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: "Golden Spoon Chop Bar",
+          type: "Restaurant",
+          cuisine: "Jollof & Fried Rice",
+          area: "East Legon",
+          rating: 4.6,
+          time: "20-30 min",
+          fee: 10,
+          color: "var(--orange)",
+          tag: "Trending",
+          image: "Images/Grill.jpg",
+          menu: [
+            {
+              id: 201,
+              name: "Jollof Rice + Chicken",
+              desc: "Smoky party-style jollof, grilled chicken leg",
+              price: 40,
+              image: "Images/Grill.jpg",
+            },
+            {
+              id: 202,
+              name: "Fried Rice + Beef",
+              desc: "Vegetable fried rice with peppered beef",
+              price: 42,
+              image: "Images/Grill.jpg",
+            },
+            {
+              id: 203,
+              name: "Kelewele",
+              desc: "Spiced fried plantain with roasted peanuts",
+              price: 18,
+              image: "Images/Grill.jpg",
+            },
+          ],
+        },
+        {
+          id: 3,
+          name: "Kenkey Corner",
+          type: "Restaurant",
+          cuisine: "Kenkey & Fish",
+          area: "James Town",
+          rating: 4.7,
+          time: "30-40 min",
+          fee: 9,
+          color: "var(--green-deep)",
+          tag: "Local Legend",
+          image: "Images/kenkey.jpg",
+          menu: [
+            {
+              id: 301,
+              name: "Kenkey + Fried Fish",
+              desc: "Ga kenkey, pepper sauce, whole tilapia",
+              price: 38,
+              image: "Images/kenkey.jpg",
+            },
+            {
+              id: 302,
+              name: "Kenkey + Shito",
+              desc: "Two balls of kenkey with hot shito",
+              price: 22,
+              image: "Images/kenkey.jpg",
+            },
+          ],
+        },
+        {
+          id: 4,
+          name: "Mama Adjoa's Fufu House",
+          type: "Chef",
+          cuisine: "Fufu & Banku",
+          area: "Adenta",
+          rating: 4.9,
+          time: "35-45 min",
+          fee: 10,
+          color: "var(--green)",
+          tag: "Top Rated",
+          image: "Images/fufu.jpg",
+          menu: [
+            {
+              id: 401,
+              name: "Fufu + Light Soup",
+              desc: "Pounded cassava & plantain, goat meat soup",
+              price: 45,
+              image: "Images/fufu.jpg",
+            },
+            {
+              id: 402,
+              name: "Banku + Okro Stew",
+              desc: "Fermented corn dough with seafood okro stew",
+              price: 42,
+              image: "Images/fufu.jpg",
+            },
+          ],
+        },
+        {
+          id: 5,
+          name: "Accra Grill House",
+          type: "Restaurant",
+          cuisine: "Burgers & Shawarma",
+          area: "Airport Residential",
+          rating: 4.5,
+          time: "20-25 min",
+          fee: 12,
+          color: "var(--orange)",
+          tag: "Fast Pick",
+          image: "Images/grills.jpg",
+          menu: [
+            {
+              id: 501,
+              name: "Beef Shawarma Wrap",
+              desc: "Grilled beef, garlic sauce, pickles",
+              price: 32,
+              image: "Images/grills.jpg",
+            },
+            {
+              id: 502,
+              name: "VitalBites Cheeseburger",
+              desc: "Double patty, cheddar, house sauce",
+              price: 38,
+              image: "Images/grills.jpg",
+            },
+          ],
+        },
+        {
+          id: 6,
+          name: "Sweet Treats Bakery",
+          type: "Chef",
+          cuisine: "Desserts & Drinks",
+          area: "Labone",
+          rating: 4.8,
+          time: "15-25 min",
+          fee: 8,
+          color: "var(--green-deep)",
+          tag: "New",
+          image: "Images/bakery.jpg",
+          menu: [
+            {
+              id: 601,
+              name: "Chocolate Cake Slice",
+              desc: "Rich cocoa sponge, ganache",
+              price: 20,
+              image: "Images/bakery.jpg",
+            },
+            {
+              id: 602,
+              name: "Bofrot (6 pcs)",
+              desc: "Ghanaian doughnuts, lightly sugared",
+              price: 15,
+              image: "Images/bakery.jpg",
+            },
+          ],
+        },
+      ];
+
+      const STEPS = [
+        {
+          title: "Browse",
+          desc: "Browse restaurants or search for your favourite meal.",
+          ic: "🔍",
+        },
+        {
+          title: "Order & Pay",
+          desc: "Place your order and pay with MoMo or card.",
+          ic: "💳",
+        },
+        {
+          title: "Rider Assigned",
+          desc: "A nearby rider picks up your order.",
+          ic: "🏍️",
+        },
+        {
+          title: "Delivered",
+          desc: "Food arrives fresh at your doorstep.",
+          ic: "✅",
+        },
+      ];
+
+      const PARTNER_OPTIONS = [
+        {
+          key: "restaurant",
+          ic: "🏬",
+          title: "Restaurant / Food Business",
+          desc: "Chop bars, fast food shops, restaurants, food joints.",
+          fields: [
+            "Business Name",
+            "Owner's Name",
+            "Phone Number",
+            "Email",
+            "Business Address",
+            "GPS Address",
+          ],
+        },
+        {
+          key: "chef",
+          ic: "👨‍🍳",
+          title: "Home Cook / Chef / Caterer",
+          desc: "Independent cooks, professional chefs, catering services.",
+          fields: [
+            "Full Name",
+            "Phone Number",
+            "Email",
+            "Speciality",
+            "Location",
+            "Portfolio",
+          ],
+        },
+        {
+          key: "rider",
+          ic: "🏍️",
+          title: "Delivery Rider",
+          desc: "Earn on your own schedule delivering across your city.",
+          fields: [
+            "Full Name",
+            "Phone Number",
+            "Driver's Licence",
+            "Ghana Card",
+            "Motorcycle Details",
+          ],
+        },
+        {
+          key: "customer",
+          ic: "🙂",
+          title: "Customer",
+          desc: "Order from restaurants, chefs, and home cooks near you.",
+          fields: ["Full Name", "Phone Number", "Email", "Delivery Address"],
+        },
+      ];
+
+      /* ---------------------------------- STATE ---------------------------------- */
+      const state = {
+        page: "home",
+        query: "",
+        selectedRestaurantId: 1,
+        cart: [], // {id,name,price,qty,restaurant,restaurantFee}
+        mobileOpen: false,
+        sort: "rating",
+        payment: "momo",
+        partnerSelected: null,
+        orderStatusIndex: 2,
+      };
+
+      /* ---------------------------------- HELPERS ---------------------------------- */
+      const $ = (sel, root = document) => root.querySelector(sel);
+      const money = (n) => "₵" + n;
+      const money2 = (n) => "₵" + n.toFixed(2);
+
+      function restaurantById(id) {
+        return RESTAURANTS.find((r) => r.id === id);
+      }
+
+      function cartCount() {
+        return state.cart.reduce((s, c) => s + c.qty, 0);
+      }
+      function subtotal() {
+        return state.cart.reduce((s, c) => s + c.price * c.qty, 0);
+      }
+      function deliveryFee() {
+        return state.cart.length ? state.cart[0].restaurantFee : 0;
+      }
+      function serviceFee() {
+        return state.cart.length
+          ? Math.round(subtotal() * 0.05 * 100) / 100
+          : 0;
+      }
+      function total() {
+        return subtotal() + deliveryFee() + serviceFee();
+      }
+
+      function navigate(page) {
+        state.page = page;
+        state.mobileOpen = false;
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function addToCart(itemId, restaurantId) {
+        const r = restaurantById(restaurantId);
+        const item = r.menu.find((m) => m.id === itemId);
+        const existing = state.cart.find((c) => c.id === itemId);
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          state.cart.push({
+            ...item,
+            qty: 1,
+            restaurant: r.name,
+            restaurantFee: r.fee,
+          });
+        }
+        render();
+      }
+      function updateQty(itemId, delta) {
+        const row = state.cart.find((c) => c.id === itemId);
+        if (!row) return;
+        row.qty += delta;
+        state.cart = state.cart.filter((c) => c.qty > 0);
+        render();
+      }
+      function placeOrder() {
+        state.cart = [];
+        navigate("track");
+      }
+
+      /* ---------------------------------- RENDER PIECES ---------------------------------- */
+      function renderNav() {
+        const links = [
+          ["home", "Home"],
+          ["browse", "Restaurants"],
+          ["partner", "Become a Partner"],
+        ];
+        return `
+  <header class="navbar">
+    <div class="nav-inner">
+      <button class="brand focus" data-nav="home"><span class="brand-mark">🍴</span><span class="display brand-name">VitalBites</span></button>
+      <nav class="nav-links">
+        ${links.map(([k, l]) => `<button class="nav-link ${state.page === k ? "active" : ""}" data-nav="${k}">${l}</button>`).join("")}
+      </nav>
+      <div class="nav-actions">
+        <button class="cart-btn focus" data-nav="cart" aria-label="Cart">🛒${cartCount() > 0 ? `<span class="cart-badge mono">${cartCount()}</span>` : ""}</button>
+        <button class="btn btn-dark nav-login-desktop" data-nav="signup">Log In / Sign Up</button>
+        <button class="mobile-toggle focus" id="mobile-toggle-btn" aria-label="Menu">${state.mobileOpen ? "✕" : "☰"}</button>
+      </div>
+    </div>
+    <div class="mobile-menu ${state.mobileOpen ? "open" : ""}">
+      ${links.map(([k, l]) => `<button data-nav="${k}">${l}</button>`).join("")}
+      <button class="btn btn-green" data-nav="signup">Log In / Sign Up</button>
+    </div>
+  </header>`;
+      }
+
+      function renderHero() {
+        return `
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="pill pill-orange">Now delivering across Accra &amp; Tema</span>
+        <h1 class="display hero-title">Fresh food delivered fast, from people who make it with pride.</h1>
+        <p class="hero-sub">Order from restaurants, home cooks, and chefs across Ghana — every order supports a local business and puts a rider to work.</p>
+        <div class="hero-search">
+          <div class="hero-search-input"><span>🔍</span><input id="hero-search-input" type="text" placeholder="Search Jollof, Waakye, Shawarma..." value="${state.query}"/></div>
+          <button class="btn btn-green" id="hero-search-btn">Search</button>
+        </div>
+        <div class="hero-ctas">
+          <button class="btn btn-green tap" data-nav="browse">🍽️ Order Food</button>
+          <button class="btn btn-outline-white tap" data-nav="partner">🤝 Become a Partner</button>
+          <button class="btn btn-outline-white tap" data-nav="partner">🚴 Become a Rider</button>
+        </div>
+      </div>
+      <img src="Images/waakyesp.jpg" alt="Waakye special" style="width:100%;border-radius:24px;box-shadow:0 22px 42px rgba(0,0,0,.14);margin-bottom:18px;max-height:420px;object-fit:cover;" />
+      <div class="ticket hero-ticket">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span class="mono" style="font-size:11px;color:var(--ink-soft);">ORDER #GH-4471</span>
+          <span class="pill">On the way</span>
+        </div>
+        <div class="perf" style="margin-top:14px;padding-top:14px;">
+          <div style="display:flex;justify-content:space-between;font-size:14.5px;padding:6px 0;"><span>Waakye Special ×1</span><span class="mono">₵35</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14.5px;padding:6px 0;"><span>Sobolo (1L) ×1</span><span class="mono">₵15</span></div>
+        </div>
+        <div class="perf" style="margin-top:8px;padding-top:10px;display:flex;justify-content:space-between;font-weight:700;"><span>Total</span><span class="mono">₵58.00</span></div>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);">🏍️ Kwame is 6 minutes away · Osu</div>
+      </div>
+    </div>
+  </section>`;
+      }
+
+      function renderHowItWorks() {
+        return `
+  <section class="section">
+    <div class="section-head">
+      <span class="pill pill-orange">How it works</span>
+      <h2 class="display section-title">From craving to doorstep in four steps</h2>
+    </div>
+    <div class="steps-grid">
+      ${STEPS.map(
+        (s, i) => `
+        <div class="step">
+          <div class="step-icon" style="background:${i % 2 === 0 ? "var(--green-tint)" : "var(--orange-tint)"};">${s.ic}</div>
+          <div class="step-num mono">STEP ${i + 1}</div>
+          <h3 class="step-title">${s.title}</h3>
+          <p class="step-desc">${s.desc}</p>
+        </div>`,
+      ).join("")}
+    </div>
+  </section>`;
+      }
+
+      function renderCategoryStrip() {
+        return `
+  <section class="cat-strip">
+    <div class="cat-strip-inner scrollx">
+      ${CATEGORIES.map((c) => `<button class="cat-chip tap focus" data-cat="${c.name}">${c.ic} ${c.name}</button>`).join("")}
+    </div>
+  </section>`;
+      }
+
+      function restaurantCardHTML(r) {
+        return `
+  <button class="r-card tap focus" data-restaurant="${r.id}">
+    <div class="ticket">
+      <div class="r-card-img-wrap"><img src="${r.image}" alt="${r.name}" /></div>
+      <div class="r-card-image" style="background:linear-gradient(135deg, ${r.color}, var(--ink));">
+        <span class="r-card-tag pill pill-orange">${r.tag}</span>
+        <span class="r-card-type">${r.type}</span>
+      </div>
+      <div class="r-card-body">
+        <div class="r-card-top">
+          <h3 class="r-card-name">${r.name}</h3>
+          <div class="r-card-rating">⭐ ${r.rating}</div>
+        </div>
+        <p class="r-card-meta">${r.cuisine} · ${r.area}</p>
+        <div class="perf r-card-foot">
+          <span>🕒 ${r.time}</span>
+          <span class="mono">Delivery ₵${r.fee}</span>
+        </div>
+      </div>
+    </div>
+  </button>`;
+      }
+
+      function renderFeatured() {
+        return `
+  <section class="section" style="padding-top:20px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <span class="pill">Featured restaurants</span>
+        <h2 class="display section-title" style="margin-top:12px;">Local kitchens worth the trip (to your door)</h2>
+      </div>
+      <button class="focus" data-nav="browse" style="background:none;border:none;cursor:pointer;font-weight:600;color:var(--green-deep);">View all ›</button>
+    </div>
+    <div class="grid-3">${RESTAURANTS.map(restaurantCardHTML).join("")}</div>
+  </section>`;
+      }
+
+      function renderWhyChoose() {
+        const items = [
+          {
+            ic: "👥",
+            title: "Creates local jobs",
+            desc: "Every order puts income in the hands of cooks, chefs, and riders.",
+          },
+          {
+            ic: "🏆",
+            title: "Verified quality",
+            desc: "Partners are vetted and rated by real customers, every time.",
+          },
+          {
+            ic: "🚚",
+            title: "Fast, tracked delivery",
+            desc: "Live GPS tracking from kitchen to your doorstep.",
+          },
+          {
+            ic: "📱",
+            title: "Pay your way",
+            desc: "MoMo, Telecel Cash, AirtelTigo, or card — whatever suits you.",
+          },
+        ];
+        return `
+  <section class="section">
+    <div class="section-head">
+      <span class="pill pill-orange">Why VitalBites</span>
+      <h2 class="display section-title">More than delivery — it's an ecosystem</h2>
+    </div>
+    <div class="grid-4">
+      ${items
+        .map(
+          (it) => `
+        <div class="why-card">
+          <div class="why-icon">${it.ic}</div>
+          <h3 class="why-title">${it.title}</h3>
+          <p class="why-desc">${it.desc}</p>
+        </div>`,
+        )
+        .join("")}
+    </div>
+  </section>`;
+      }
+
+      function renderStats() {
+        const stats = [
+          ["12,400+", "Orders delivered"],
+          ["860+", "Local partners"],
+          ["1,200+", "Riders earning"],
+          ["9", "Cities covered"],
+        ];
+        return `
+  <section class="stats">
+    <div class="stats-grid">
+      ${stats.map(([n, l]) => `<div><div class="display mono stat-num">${n}</div><div class="stat-label">${l}</div></div>`).join("")}
+    </div>
+  </section>`;
+      }
+
+      function renderPartnerBanner() {
+        return `
+  <section class="section">
+    <div class="partner-banner">
+      <div style="max-width:480px;">
+        <h2 class="display" style="font-size:26px;font-weight:600;margin-bottom:10px;">Cook, deliver, or run your business with us</h2>
+        <p style="font-size:14.5px;color:var(--ink-soft);">Join thousands of restaurants, chefs, and riders already earning on VitalBites.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-green tap" data-nav="partner">🤝 Become a Partner</button>
+        <button class="btn btn-outline tap" data-nav="partner">🚴 Become a Rider</button>
+      </div>
+    </div>
+  </section>`;
+      }
+
+      function renderFooter() {
+        return `
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span class="brand-mark">🍴</span><span class="display" style="font-size:18px;color:#fff;font-weight:700;">VitalBites</span></div>
+        <p style="font-size:13px;line-height:1.6;max-width:260px;">Empowering food. Delivering opportunities. A Ghanaian food ecosystem for customers, cooks, and riders.</p>
+        <div class="footer-social"><span>📘</span><span>📷</span><span>💬</span></div>
+      </div>
+      <div><h4>COMPANY</h4>${["About Us", "Careers", "Services", "Contact"].map((t) => `<div class="footer-item">${t}</div>`).join("")}</div>
+      <div><h4>PARTNERS</h4>${["Become a Partner", "Become a Rider", "Chef Marketplace", "Catering"].map((t) => `<div class="footer-item">${t}</div>`).join("")}</div>
+      <div>
+        <h4>CONTACT</h4>
+        <div class="footer-item footer-contact">📞 +233 55 123 4567</div>
+        <div class="footer-item footer-contact">✉️ hello@vitalbites.gh</div>
+        <div class="footer-item footer-contact">📍 Accra, Ghana</div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 VitalBites. All rights reserved.</div>
+  </footer>`;
+      }
+
+      /* ---------------------------------- PAGES ---------------------------------- */
+      function renderHomePage() {
+        return (
+          renderHero() +
+          renderHowItWorks() +
+          renderCategoryStrip() +
+          renderFeatured() +
+          renderWhyChoose() +
+          renderStats() +
+          renderPartnerBanner()
+        );
+      }
+
+      function filteredRestaurants() {
+        const q = state.query.trim().toLowerCase();
+        let list = RESTAURANTS.filter(
+          (r) =>
+            !q ||
+            r.name.toLowerCase().includes(q) ||
+            r.cuisine.toLowerCase().includes(q),
+        );
+        if (state.sort === "rating")
+          list = [...list].sort((a, b) => b.rating - a.rating);
+        if (state.sort === "fee")
+          list = [...list].sort((a, b) => a.fee - b.fee);
+        return list;
+      }
+
+      function browseResultsHTML() {
+        const list = filteredRestaurants();
+        const grid = list.length
+          ? `<div class="grid-2">${list.map(restaurantCardHTML).join("")}</div>`
+          : `<div class="empty-state">No matches yet — try a different dish or cuisine.</div>`;
+        return { count: list.length, grid };
+      }
+
+      function renderBrowsePage() {
+        const { count, grid } = browseResultsHTML();
+        return `
+  <div class="page-pad">
+    <button class="back-link focus" data-nav="home">⬅ Back to home</button>
+    <h1 class="display page-title">Restaurants &amp; Cooks near you</h1>
+    <p class="page-sub" id="browse-count">${count} results${state.query ? ` for "${state.query}"` : ""}</p>
+    <div class="browse-layout">
+      <aside class="filters">
+        <div class="ticket">
+          <div class="filter-search"><span>🔍</span><input id="browse-search-input" type="text" placeholder="Search meals..." value="${state.query}"/></div>
+          <div class="filter-label">SORT BY</div>
+          <label class="sort-row"><input type="radio" name="sort" data-sort="rating" ${state.sort === "rating" ? "checked" : ""}/> Top Rated</label>
+          <label class="sort-row"><input type="radio" name="sort" data-sort="fee" ${state.sort === "fee" ? "checked" : ""}/> Lowest Delivery Fee</label>
+          <div class="filter-label" style="margin-top:16px;">CUISINE</div>
+          <div class="cuisine-row">
+            ${CATEGORIES.slice(0, 6)
+              .map(
+                (c) =>
+                  `<button class="cuisine-chip tap" data-cat="${c.name}">${c.name}</button>`,
+              )
+              .join("")}
+          </div>
+          ${state.query ? `<button class="clear-filters" id="clear-filters-btn">Clear filters</button>` : ""}
+        </div>
+      </aside>
+      <div class="browse-results" id="browse-results">${grid}</div>
+    </div>
+  </div>`;
+      }
+
+      function renderMenuPage() {
+        const r = restaurantById(state.selectedRestaurantId);
+        if (!r) return "";
+        const cartRows = state.cart
+          .slice(0, 4)
+          .map(
+            (c) =>
+              `<div class="cart-side-row"><span>${c.name} ×${c.qty}</span><span class="mono">${money(c.price * c.qty)}</span></div>`,
+          )
+          .join("");
+        return `
+  <div class="page-pad">
+    <button class="back-link focus" data-nav="browse">⬅ Back to restaurants</button>
+    <div class="menu-hero" style="background:linear-gradient(135deg, ${r.color}, var(--ink));">
+      <div>
+        <span class="pill pill-orange">${r.tag}</span>
+        <h1 class="display menu-hero-title">${r.name}</h1>
+      </div>
+    </div>
+    <div class="menu-meta">
+      <span>⭐ ${r.rating}</span><span>🕒 ${r.time}</span><span>📍 ${r.area}</span><span class="mono">Delivery ₵${r.fee}</span>
+    </div>
+    <div class="menu-layout">
+      <div>
+        <h2 class="menu-list-title">Menu</h2>
+        <div class="menu-list">
+          ${r.menu
+            .map(
+              (item) => `
+            <div class="ticket menu-item">
+              <div class="menu-item-content">
+                ${item.image ? `<img class="menu-item-thumb" src="${item.image}" alt="${item.name}"/>` : ""}
+                <div>
+                  <h3 class="menu-item-name">${item.name}</h3>
+                  <p class="menu-item-desc">${item.desc}</p>
+                  <span class="mono menu-item-price">₵${item.price}</span>
+                </div>
+              </div>
+              <button class="btn btn-green tap" data-add="${item.id}" data-rest="${r.id}">➕ Add</button>
+            </div>`,
+            )
+            .join("")}
+        </div>
+      </div>
+      <div>
+        <div class="ticket cart-side">
+          <div class="cart-side-head">🛒 <h3 style="font-size:15px;font-weight:700;">Your Cart</h3></div>
+          ${
+            state.cart.length === 0
+              ? `<p style="font-size:13.5px;color:var(--ink-soft);">No items yet — add something delicious.</p>`
+              : `${cartRows}<button class="btn btn-green btn-full tap" style="margin-top:14px;" data-nav="cart">Go to Cart</button>`
+          }
+        </div>
+      </div>
+    </div>
+  </div>`;
+      }
+
+      function renderCartPage() {
+        if (state.cart.length === 0) {
+          return `
+    <div class="cart-empty">
+      <div style="font-size:40px;margin-bottom:16px;">🛒</div>
+      <h2 class="display" style="font-size:24px;font-weight:600;margin-bottom:8px;">Your cart is empty</h2>
+      <p style="color:var(--ink-soft);margin-bottom:22px;">Browse restaurants and add a dish to get started.</p>
+      <button class="btn btn-green tap" data-nav="browse">Browse Restaurants</button>
+    </div>`;
+        }
+        const rows = state.cart
+          .map(
+            (c) => `
+    <div class="cart-row">
+      <div><div class="cart-row-name">${c.name}</div><div class="cart-row-rest">${c.restaurant}</div></div>
+      <div class="cart-row-right">
+        <div class="qty-control"><button data-qty="-1" data-id="${c.id}">−</button><span class="mono">${c.qty}</span><button data-qty="1" data-id="${c.id}">+</button></div>
+        <span class="mono cart-row-price">${money(c.price * c.qty)}</span>
+      </div>
+    </div>`,
+          )
+          .join("");
+
+        const paymentOptions = [
+          ["momo", "📱", "MTN MoMo"],
+          ["telecel", "📱", "Telecel Cash"],
+          ["airtel", "📱", "AirtelTigo"],
+          ["visa", "💳", "Visa"],
+          ["mc", "💳", "Mastercard"],
+        ];
+
+        return `
+  <div class="cart-page-wrap">
+    <button class="back-link focus" data-nav="browse">⬅ Keep browsing</button>
+    <h1 class="display page-title" style="margin-bottom:24px;">Your Order</h1>
+    <div class="ticket cart-block">
+      ${rows}
+      <div class="perf totals-block">
+        <div class="totals-row"><span>Subtotal</span><span class="mono">${money2(subtotal())}</span></div>
+        <div class="totals-row"><span>Delivery Fee</span><span class="mono">${money2(deliveryFee())}</span></div>
+        <div class="totals-row"><span>Service Fee</span><span class="mono">${money2(serviceFee())}</span></div>
+        <div class="totals-row totals-final"><span>Total</span><span class="mono">${money2(total())}</span></div>
+      </div>
+    </div>
+
+    <div class="ticket cart-block form-block">
+      <h3>Delivery details</h3>
+      <div class="form-col">
+        <input id="chk-address" type="text" placeholder="Delivery address (e.g. 12 Oxford St, Osu)"/>
+        <input id="chk-phone" type="text" placeholder="Phone number"/>
+        <textarea id="chk-notes" rows="2" placeholder="Special instructions (optional)"></textarea>
+      </div>
+    </div>
+
+    <div class="ticket cart-block form-block">
+      <h3>Payment method</h3>
+      <div class="payment-grid">
+        ${paymentOptions.map(([k, ic, l]) => `<button class="payment-opt tap ${state.payment === k ? "active" : ""}" data-pay="${k}">${ic} ${l}</button>`).join("")}
+      </div>
+    </div>
+
+    <button class="btn btn-green btn-full tap" id="place-order-btn">Place Order · ${money2(total())}</button>
+  </div>`;
+      }
+
+      function renderTrackPage() {
+        const statuses = [
+          "Order Confirmed",
+          "Preparing Food",
+          "Rider Assigned",
+          "On the Way",
+          "Delivered",
+        ];
+        const active = state.orderStatusIndex;
+        return `
+  <div class="track-wrap">
+    <div class="track-head">
+      <span class="pill">Order #GH-4471</span>
+      <h1 class="display" style="font-size:28px;font-weight:600;margin-top:12px;">Your food is on its way</h1>
+      <p style="color:var(--ink-soft);font-size:14px;margin-top:6px;">Estimated arrival in 14 minutes</p>
+    </div>
+    <div class="ticket track-map">📍<span style="font-size:13px;color:var(--ink-soft);">Live map — rider location updates in real time</span></div>
+    <div class="ticket track-steps">
+      ${statuses
+        .map(
+          (s, i) => `
+        <div class="track-step">
+          ${i < statuses.length - 1 ? `<div class="track-line" style="background:${i < active ? "var(--green)" : "var(--line)"};"></div>` : ""}
+          <div class="track-dot" style="background:${i <= active ? "var(--green)" : "#fff"};border:2px solid ${i <= active ? "var(--green)" : "var(--line)"};color:#fff;">${i <= active ? "✓" : ""}</div>
+          <div>
+            <div class="track-step-title" style="font-weight:${i === active ? 700 : 600};color:${i <= active ? "var(--ink)" : "var(--ink-soft)"};">${s}</div>
+            ${i === active ? `<div class="track-step-sub">Kwame is on a motorcycle, 6 minutes away</div>` : ""}
+          </div>
+        </div>`,
+        )
+        .join("")}
+    </div>
+    <div class="track-actions">
+      <button class="btn btn-outline btn-full tap" data-nav="browse">Order Again</button>
+      <button class="btn btn-green btn-full tap" data-nav="home">Back to Home</button>
+    </div>
+  </div>`;
+      }
+
+      function renderPartnerPage() {
+        const active = PARTNER_OPTIONS.find(
+          (o) => o.key === state.partnerSelected,
+        );
+        return `
+  <div class="partner-wrap">
+    <div class="section-head">
+      <span class="pill pill-orange">Join VitalBites</span>
+      <h1 class="display page-title" style="margin-top:12px;">Create your account</h1>
+      <p style="color:var(--ink-soft);font-size:14.5px;margin-top:6px;">Choose the account type that fits you.</p>
+    </div>
+    <div class="grid-4">
+      ${PARTNER_OPTIONS.map(
+        (o) => `
+        <button class="partner-opt tap focus ${state.partnerSelected === o.key ? "active" : ""}" data-partner="${o.key}">
+          <div class="partner-opt-icon">${o.ic}</div>
+          <h3 class="partner-opt-title">${o.title}</h3>
+          <p class="partner-opt-desc">${o.desc}</p>
+        </button>`,
+      ).join("")}
+    </div>
+    ${
+      active
+        ? `
+    <div class="ticket partner-form">
+      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px;">${active.title} — sign up</h3>
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:18px;">This is a preview form — connect your backend to make it live.</p>
+      <div class="grid-2">
+        ${active.fields.map((f) => `<input type="text" placeholder="${f}"/>`).join("")}
+      </div>
+      <button class="btn btn-green tap" style="margin-top:20px;" data-nav="home">Create Account</button>
+    </div>`
+        : ""
+    }
+  </div>`;
+      }
+
+      /* ---------------------------------- MASTER RENDER ---------------------------------- */
+      function pageHTML() {
+        switch (state.page) {
+          case "home":
+            return renderHomePage();
+          case "browse":
+            return renderBrowsePage();
+          case "menu":
+            return renderMenuPage();
+          case "cart":
+            return renderCartPage();
+          case "track":
+            return renderTrackPage();
+          case "partner":
+          case "signup":
+            return renderPartnerPage();
+          default:
+            return renderHomePage();
+        }
+      }
+
+      function render() {
+        document.getElementById("app").innerHTML =
+          renderNav() + pageHTML() + renderFooter();
+      }
+
+      /* ---------------------------------- EVENTS (delegated, attached once) ---------------------------------- */
+      document.addEventListener("click", (e) => {
+        const navBtn = e.target.closest("[data-nav]");
+        if (navBtn) {
+          navigate(navBtn.dataset.nav);
+          return;
+        }
+
+        if (e.target.closest("#mobile-toggle-btn")) {
+          state.mobileOpen = !state.mobileOpen;
+          render();
+          return;
+        }
+
+        const catBtn = e.target.closest("[data-cat]");
+        if (catBtn) {
+          state.query = catBtn.dataset.cat;
+          navigate("browse");
+          return;
+        }
+
+        const restBtn = e.target.closest("[data-restaurant]");
+        if (restBtn) {
+          state.selectedRestaurantId = Number(restBtn.dataset.restaurant);
+          navigate("menu");
+          return;
+        }
+
+        const addBtn = e.target.closest("[data-add]");
+        if (addBtn) {
+          addToCart(Number(addBtn.dataset.add), Number(addBtn.dataset.rest));
+          return;
+        }
+
+        const qtyBtn = e.target.closest("[data-qty]");
+        if (qtyBtn) {
+          updateQty(Number(qtyBtn.dataset.id), Number(qtyBtn.dataset.qty));
+          return;
+        }
+
+        const payBtn = e.target.closest("[data-pay]");
+        if (payBtn) {
+          state.payment = payBtn.dataset.pay;
+          render();
+          return;
+        }
+
+        const partnerBtn = e.target.closest("[data-partner]");
+        if (partnerBtn) {
+          state.partnerSelected = partnerBtn.dataset.partner;
+          render();
+          return;
+        }
+
+        if (e.target.closest("#hero-search-btn")) {
+          const v = document.getElementById("hero-search-input");
+          state.query = v ? v.value : "";
+          navigate("browse");
+          return;
+        }
+
+        if (e.target.closest("#clear-filters-btn")) {
+          state.query = "";
+          navigate("browse");
+          return;
+        }
+
+        if (e.target.closest("#place-order-btn")) {
+          placeOrder();
+          return;
+        }
+      });
+
+      // Live filtering on the browse page search box (partial update to preserve input focus)
+      document.addEventListener("input", (e) => {
+        if (e.target.id === "browse-search-input") {
+          state.query = e.target.value;
+          const { count, grid } = browseResultsHTML();
+          const countEl = document.getElementById("browse-count");
+          const resultsEl = document.getElementById("browse-results");
+          if (countEl)
+            countEl.textContent = `${count} results${state.query ? ` for "${state.query}"` : ""}`;
+          if (resultsEl) resultsEl.innerHTML = grid;
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && e.target.id === "hero-search-input") {
+          state.query = e.target.value;
+          navigate("browse");
+        }
+      });
+
+      document.addEventListener("change", (e) => {
+        const sortInput = e.target.closest("[data-sort]");
+        if (sortInput) {
+          state.sort = sortInput.dataset.sort;
+          render();
+        }
+      });
+
+      /* ---------------------------------- INIT ---------------------------------- */
+      render();
+    </script>
+  </body>
+</html>
